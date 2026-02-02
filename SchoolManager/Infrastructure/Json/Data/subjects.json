@@ -1,0 +1,22 @@
+﻿[
+    {
+        "id": 1,
+        "name": "Programming Fundamentals",
+        "teacherId": 1
+    },
+    {
+        "id": 2,
+        "name": "Data Structures",
+        "teacherId": 1
+    },
+    {
+        "id": 3,
+        "name": "Databases",
+        "teacherId": 2
+    },
+    {
+        "id": 4,
+        "name": "Operating Systems",
+        "teacherId": 3
+    }
+]

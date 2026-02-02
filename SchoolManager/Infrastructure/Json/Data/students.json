@@ -1,0 +1,26 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Nguyen Van An",
+    "classId": 1,
+    "status": "In"
+  },
+  {
+    "id": 2,
+    "name": "Tran Thi Binh",
+    "classId": 1,
+    "status": "In"
+  },
+  {
+    "id": 3,
+    "name": "Le Quoc Cuong",
+    "classId": 2,
+    "status": "Graduated"
+  },
+  {
+    "id": 4,
+    "name": "Pham Minh Duc",
+    "classId": 2,
+    "status": "Outed"
+  }
+]
