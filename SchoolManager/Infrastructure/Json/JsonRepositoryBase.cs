@@ -41,10 +41,10 @@ namespace SchoolManager.Infrastructure.Json
             var json = File.ReadAllText(_filePath);
 
             if (string.IsNullOrWhiteSpace(json))
-                return new List<T>();
+                return [];
 
             return JsonSerializer.Deserialize<List<T>>(json, _jsonOptions)
-                   ?? new List<T>();
+                   ?? [];
         }
 
         protected void Save(List<T> items)
