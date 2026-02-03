@@ -6,9 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Add this using directive if IClassRepository is in a different namespace
-// using SchoolManager.Domain.Interfaces;
-
 namespace SchoolManager.Application.Services
 {
     public class StudentService
