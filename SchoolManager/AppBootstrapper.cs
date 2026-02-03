@@ -55,7 +55,7 @@ namespace SchoolManager
             var studentRepo = new JsonStudentRepository("Infrastructure/Json/Data/students.json");
             var teacherRepo = new JsonTeacherRepository("Infrastructure/Json/Data/teachers.json");
             var subjectRepo = new JsonSubjectRepository("Infrastructure/Json/Data/subjects.json");
-            var classRepo = new JsonClassroomRepository("Infrastructure/Json/Data/classes.json");
+            var classRepo = new JsonClassroomRepository("Infrastructure/Json/Data/classrooms.json");
             var gradeRepo = new JsonGradeRepository("Infrastructure/Json/Data/grades.json");
 
             return new SchoolAppContext(
