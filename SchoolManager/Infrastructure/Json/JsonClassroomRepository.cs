@@ -14,12 +14,12 @@ namespace SchoolManager.Infrastructure.Json
         public JsonClassroomRepository(string filePath) : base(filePath) { }
 
         public IReadOnlyList<Classroom> GetAll()
-            => Load();
+        => Load();
         public IReadOnlyList<Classroom> GetByGradeId(int gradeId)
-    => Load().Where(c => c.GradeId == gradeId).ToList();
+        => Load().Where(c => c.GradeId == gradeId).ToList();
 
         public Classroom? GetById(int id)
-            => Load().FirstOrDefault(c => c.Id == id);
+        => Load().FirstOrDefault(c => c.Id == id);
 
         public void Add(Classroom classroom)
         {

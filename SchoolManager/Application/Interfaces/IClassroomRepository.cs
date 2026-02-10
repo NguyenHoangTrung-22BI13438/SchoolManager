@@ -16,8 +16,8 @@ namespace SchoolManager.Application.Interfaces
 
         IReadOnlyList<Classroom> GetByGradeId(int gradeId);
 
-        void Add(Classroom @class);
-        void Update(Classroom @class);
+        void Add(Classroom classroom);
+        void Update(Classroom classroom);
         void Delete(int id);
     }
 }

@@ -7,17 +7,22 @@ using System.Threading.Tasks;
 
 namespace SchoolManager.Domain.Rules
 {
-    public static class AcademicRules
+    public enum AcademicPerformance
     {
-        public enum AcademicPerformance
-        {
-            Excellent,
-            Good,
-            Average,
-            Poor
-        }
-        
-        public static AcademicPerformance Evaluate(IReadOnlyList<Grade> grades)
+        Excellent,
+        Good,
+        Average,
+        Poor
+    }
+
+    public interface IAcademicRules
+    {
+        AcademicPerformance Evaluate(IReadOnlyList<Grade> grades);
+    }
+
+    public class StandardAcademicRules : IAcademicRules
+    {
+        public AcademicPerformance Evaluate(IReadOnlyList<Grade> grades)
         {
             if (grades == null || grades.Count == 0)
                 throw new ArgumentException("Grades required");

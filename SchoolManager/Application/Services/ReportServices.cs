@@ -12,19 +12,22 @@ namespace SchoolManager.Application.Services
     {
         private readonly IGradeRepository _grades;
         private readonly ISubjectRepository _subjects;
-       
+        private readonly IAcademicRules _academicRules;  
+
         public ReportService(
             IGradeRepository grades,
-            ISubjectRepository subjects)
+            ISubjectRepository subjects,
+            IAcademicRules academicRules)  
         {
             _grades = grades;
             _subjects = subjects;
+            _academicRules = academicRules;
         }
 
-        public AcademicRules.AcademicPerformance EvaluateStudent(int studentId)
+        public AcademicPerformance EvaluateStudent(int studentId)
         {
             var grades = _grades.GetAll().Where(g => g.StudentID == studentId).ToList();
-            return AcademicRules.Evaluate(grades);
+            return _academicRules.Evaluate(grades);  
         }
     }
 }

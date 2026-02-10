@@ -1,4 +1,5 @@
 ﻿using SchoolManager.Application.Services;
+using SchoolManager.Domain.Rules;
 using SchoolManager.Infrastructure.Json;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,7 @@ namespace SchoolManager
                 new TeacherService(teacherRepo, subjectRepo),
                 new SubjectService(subjectRepo),
                 new ClassroomService(classroomRepo, studentRepo),
-                new ReportService(gradeRepo, subjectRepo),
+                new ReportService(gradeRepo, subjectRepo, new StandardAcademicRules()),
                 studentRepo,
                 teacherRepo,
                 subjectRepo,
