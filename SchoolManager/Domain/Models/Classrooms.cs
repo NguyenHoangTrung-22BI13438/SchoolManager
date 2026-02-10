@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SchoolManager.Domain.Models
 {
-    public class Classroom
+    public class Classrooms
     {
         public int Id { get; set; }
-        public int GradeId { get; set; }
+        public string Name { get; set; } = "";
     }
 }

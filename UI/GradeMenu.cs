@@ -1,10 +1,5 @@
-﻿using SchoolManager.Domain.Models;
+using SchoolManager.Domain.Models;
 using SchoolManager.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManager.UI
 {
@@ -14,6 +9,7 @@ namespace SchoolManager.UI
         {
             Show(app.GradeRepo, app.StudentRepo, app.SubjectRepo);
         }
+
         public static void Show(IGradeRepository repo, IStudentRepository studentRepo, ISubjectRepository subjectRepo)
         {
             while (true)
@@ -61,6 +57,7 @@ namespace SchoolManager.UI
                 }
             }
         }
+
         static void ListGrades(IGradeRepository repo, IStudentRepository studentRepo, ISubjectRepository subjectRepo)
         {
             Console.Clear();
@@ -233,6 +230,7 @@ namespace SchoolManager.UI
 
             Pause();
         }
+
         private static void Pause()
         {
             Console.WriteLine("\nPress any key...");

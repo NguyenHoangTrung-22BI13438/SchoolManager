@@ -12,6 +12,9 @@ namespace SchoolManager.Application.Interfaces
         IReadOnlyList<Grade> GetAll();
         Grade? GetById(int id);
 
+        IReadOnlyList<Grade> GetByStudentId(int studentId);
+        IReadOnlyList<Grade> GetBySubjectId(int subjectId);
+
         void Add(Grade grade);
         void Update(Grade grade);
         void Delete(int id);

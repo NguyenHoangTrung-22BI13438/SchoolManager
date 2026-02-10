@@ -9,11 +9,11 @@ namespace SchoolManager.Application.Interfaces
 {
     public interface ISubjectRepository
     {
-        IReadOnlyList<Subject> GetAll();
-        Subject? GetById(int Id);
-        IReadOnlyList<Subject> GetByTeacherId(int teacherId);
-        void Add(Subject subject);
-        void Update(Subject subject);
+        IReadOnlyList<Subjects> GetAll();
+        Subjects? GetById(int id);
+
+        void Add(Subjects subject);
+        void Update(Subjects subject);
         void Delete(int id);
     }
 }

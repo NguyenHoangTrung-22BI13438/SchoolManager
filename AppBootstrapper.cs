@@ -1,12 +1,7 @@
-﻿using SchoolManager.Application.Interfaces;
+using SchoolManager.Application.Interfaces;
 using SchoolManager.Application.Services;
 using SchoolManager.Domain.Rules;
 using SchoolManager.Infrastructure.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManager
 {
@@ -16,6 +11,7 @@ namespace SchoolManager
         public TeacherService Teachers { get; }
         public SubjectService Subjects { get; }
         public ClassroomService Classrooms { get; }
+        public GradeService Grades { get; }
         public ReportService Reports { get; }
 
         public IStudentRepository StudentRepo { get; }
@@ -23,23 +19,27 @@ namespace SchoolManager
         public ISubjectRepository SubjectRepo { get; }
         public IClassroomRepository ClassroomRepo { get; }
         public IGradeRepository GradeRepo { get; }
+        public IClassroomSubjectRepository ClassroomSubjectRepo { get; }
 
         public SchoolAppContext(
             StudentService students,
             TeacherService teachers,
             SubjectService subjects,
             ClassroomService classrooms,
+            GradeService grades,
             ReportService reports,
             IStudentRepository studentRepo,
             ITeacherRepository teacherRepo,
             ISubjectRepository subjectRepo,
             IClassroomRepository classroomRepo,
-            IGradeRepository gradeRepo)
+            IGradeRepository gradeRepo,
+            IClassroomSubjectRepository classroomSubjectRepo)
         {
             Students = students;
             Teachers = teachers;
             Subjects = subjects;
             Classrooms = classrooms;
+            Grades = grades;
             Reports = reports;
 
             StudentRepo = studentRepo;
@@ -47,6 +47,7 @@ namespace SchoolManager
             SubjectRepo = subjectRepo;
             ClassroomRepo = classroomRepo;
             GradeRepo = gradeRepo;
+            ClassroomSubjectRepo = classroomSubjectRepo;
         }
     }
 
@@ -54,24 +55,38 @@ namespace SchoolManager
     {
         public static SchoolAppContext Build()
         {
+            // Repositories
             IStudentRepository studentRepo = new JsonStudentRepository("Infrastructure/Json/Data/students.json");
             ITeacherRepository teacherRepo = new JsonTeacherRepository("Infrastructure/Json/Data/teachers.json");
             ISubjectRepository subjectRepo = new JsonSubjectRepository("Infrastructure/Json/Data/subjects.json");
             IClassroomRepository classroomRepo = new JsonClassroomRepository("Infrastructure/Json/Data/classrooms.json");
             IGradeRepository gradeRepo = new JsonGradeRepository("Infrastructure/Json/Data/grades.json");
-            IClassroomSubjectRepository classroomSubjectRepo = new JsonClassroomSubjectRepository("Infrastructure/Json/Data/classroomSubjects.json");
+            IClassroomSubjectRepository classroomSubjectRepo = new JsonClassroomSubjectRepository("Infrastructure/Json/Data/classroomsubjects.json");
+
+            // Domain Rules
+            IAcademicRules academicRules = new StandardAcademicRules();
+
+            // Services
+            var studentService = new StudentService(studentRepo, classroomRepo);
+            var teacherService = new TeacherService(teacherRepo, classroomSubjectRepo);
+            var subjectService = new SubjectService(subjectRepo, classroomSubjectRepo);
+            var classroomService = new ClassroomService(classroomRepo, studentRepo, classroomSubjectRepo);
+            var gradeService = new GradeService(gradeRepo, studentRepo, subjectRepo);
+            var reportService = new ReportService(gradeRepo, subjectRepo, academicRules);
 
             return new SchoolAppContext(
-                new StudentService(studentRepo, classroomRepo),
-                new TeacherService(teacherRepo, classroomSubjectRepo),
-                new SubjectService(subjectRepo, classroomSubjectRepo),
-                new ClassroomService(classroomRepo, studentRepo, classroomSubjectRepo),
-                new ReportService(gradeRepo, subjectRepo, new StandardAcademicRules()),
+                studentService,
+                teacherService,
+                subjectService,
+                classroomService,
+                gradeService,
+                reportService,
                 studentRepo,
                 teacherRepo,
                 subjectRepo,
                 classroomRepo,
-                gradeRepo
+                gradeRepo,
+                classroomSubjectRepo
             );
         }
     }

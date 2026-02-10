@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SchoolManager.Domain.Models;
 using SchoolManager.Application.Services;
-using SchoolManager.Infrastructure.Json;
+using SchoolManager.Application.Interfaces;
 
 namespace SchoolManager.UI
 {
@@ -15,7 +15,7 @@ namespace SchoolManager.UI
         {
             Show(app.Students, app.StudentRepo);
         }
-        public static void Show(StudentService service, JsonStudentRepository repo)
+        public static void Show(StudentService service, IStudentRepository repo)
         {
             while (true)
             {
@@ -68,7 +68,7 @@ namespace SchoolManager.UI
         }
 
         // ========== ACTIONS ==========
-        private static void ListStudents(JsonStudentRepository repo)
+        private static void ListStudents(IStudentRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== STUDENT LIST ===");
@@ -83,14 +83,14 @@ namespace SchoolManager.UI
                 foreach (var s in students)
                 {
                     Console.WriteLine(
-                        $"ID: {s.Id} | Name: {s.Name} | ClassID: {s.ClassId} | Status: {s.Status}");
+                        $"ID: {s.Id} | Name: {s.Name} | ClassID: {s.ClassroomId} | Status: {s.Status}");
                 }
             }
 
             Pause();
         }
 
-        private static void ViewStudentById(JsonStudentRepository repo)
+        private static void ViewStudentById(IStudentRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== VIEW STUDENT ===");
@@ -107,7 +107,7 @@ namespace SchoolManager.UI
             {
                 Console.WriteLine($"ID: {student.Id}");
                 Console.WriteLine($"Name: {student.Name}");
-                Console.WriteLine($"ClassID: {student.ClassId}");
+                Console.WriteLine($"ClassID: {student.ClassroomId}");
                 Console.WriteLine($"Status: {student.Status}");
             }
 
@@ -135,7 +135,7 @@ namespace SchoolManager.UI
             {
                 Id = id,
                 Name = name,
-                ClassId = classId,
+                ClassroomId = classId,
                 Status = status
             });
 
@@ -143,7 +143,7 @@ namespace SchoolManager.UI
             Pause();
         }
 
-        private static void UpdateStudent(JsonStudentRepository repo)
+        private static void UpdateStudent(IStudentRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== UPDATE STUDENT ===");
@@ -165,11 +165,11 @@ namespace SchoolManager.UI
             if (!string.IsNullOrWhiteSpace(name))
                 student.Name = name;
 
-            Console.WriteLine($"Current ClassID: {student.ClassId}");
+            Console.WriteLine($"Current ClassID: {student.ClassroomId}");
             Console.Write("New ClassID (leave empty to keep current): ");
             var classIdInput = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(classIdInput))
-                student.ClassId = int.Parse(classIdInput);
+                student.ClassroomId = int.Parse(classIdInput);
 
             Console.WriteLine($"Current Status: {student.Status}");
             Console.Write("New Status (1=In, 2=Graduated, 3=Outed, leave empty to keep current): ");
@@ -182,7 +182,7 @@ namespace SchoolManager.UI
             Pause();
         }
 
-        private static void DeleteStudent(JsonStudentRepository repo)
+        private static void DeleteStudent(IStudentRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== DELETE STUDENT ===");
@@ -226,7 +226,7 @@ namespace SchoolManager.UI
 
             try
             {
-                service.ChangeClass(studentId, newClassId);
+                service.ChangeClassroom(studentId, newClassId);
                 Console.WriteLine("Student class changed successfully.");
             }
             catch (Exception ex)
@@ -245,7 +245,7 @@ namespace SchoolManager.UI
             Console.Write("Class ID: ");
             var classId = int.Parse(Console.ReadLine()!);
 
-            var students = service.GetStudentsByClass(classId);
+            var students = service.GetStudentsByClassroom(classId);
             if (students.Count == 0)
             {
                 Console.WriteLine("No students found in this class.");

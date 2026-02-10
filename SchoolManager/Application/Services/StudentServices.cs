@@ -11,14 +11,14 @@ namespace SchoolManager.Application.Services
     public class StudentService
     {
         private readonly IStudentRepository _students;
-        private readonly IClassroomRepository _classes;
+        private readonly IClassroomRepository _classrooms;
 
         public StudentService(
             IStudentRepository students,
-            IClassroomRepository classes)
+            IClassroomRepository classrooms)
         {
             _students = students;
-            _classes = classes;
+            _classrooms = classrooms;
         }
 
         public void EnrollStudent(Student student)
@@ -26,19 +26,23 @@ namespace SchoolManager.Application.Services
             _students.Add(student);
         }
 
-        public void ChangeClass(int studentId, int newClassId)
+        public void ChangeClassroom(int studentId, int classroomId)
         {
             var student = _students.GetById(studentId)
                 ?? throw new Exception("Student not found");
 
-            student.ClassId = newClassId;
+            var classroom = _classrooms.GetById(classroomId)
+                ?? throw new Exception("Classroom not found");
+
+            student.ClassroomId = classroomId;
             _students.Update(student);
         }
 
-        public IReadOnlyList<Student> GetStudentsByClass(int classId)
+        public IReadOnlyList<Student> GetStudentsByClassroom(int classroomId)
         {
-            return _students.GetAll().Where(s => s.ClassId == classId).ToList();
+            return _students.GetAll()
+                .Where(s => s.ClassroomId == classroomId)
+                .ToList();
         }
     }
-
 }

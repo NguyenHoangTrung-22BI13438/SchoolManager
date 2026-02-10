@@ -1,32 +1,27 @@
-﻿using SchoolManager.Application.Interfaces;
+using SchoolManager.Application.Interfaces;
 using SchoolManager.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManager.Infrastructure.Json
 {
     public class JsonClassroomRepository
-        : JsonRepositoryBase<Classrooms>, IClassroomRepository
+        : JsonRepositoryBase<Classroom>, IClassroomRepository
     {
         public JsonClassroomRepository(string filePath) : base(filePath) { }
 
-        public IReadOnlyList<Classrooms> GetAll()
+        public IReadOnlyList<Classroom> GetAll()
             => Load();
 
-        public Classrooms? GetById(int id)
+        public Classroom? GetById(int id)
             => Load().FirstOrDefault(c => c.Id == id);
 
-        public void Add(Classrooms classroom)
+        public void Add(Classroom classroom)
         {
             var classes = Load();
             classes.Add(classroom);
             Save(classes);
         }
 
-        public void Update(Classrooms classroom)
+        public void Update(Classroom classroom)
         {
             var classes = Load();
             var index = classes.FindIndex(c => c.Id == classroom.Id);

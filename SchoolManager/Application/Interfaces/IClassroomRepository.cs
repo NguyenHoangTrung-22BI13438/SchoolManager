@@ -11,13 +11,11 @@ namespace SchoolManager.Application.Interfaces
 {
     public interface IClassroomRepository
     {
-        IReadOnlyList<Classroom> GetAll();
-        Classroom? GetById(int id);
+        IReadOnlyList<Classrooms> GetAll();
+        Classrooms? GetById(int id);
 
-        IReadOnlyList<Classroom> GetByGradeId(int gradeId);
-
-        void Add(Classroom classroom);
-        void Update(Classroom classroom);
+        void Add(Classrooms classroom);
+        void Update(Classrooms classroom);
         void Delete(int id);
     }
 }

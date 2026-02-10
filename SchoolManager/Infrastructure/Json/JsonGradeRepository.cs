@@ -19,6 +19,12 @@ namespace SchoolManager.Infrastructure.Json
         public Grade? GetById(int id)
             => Load().FirstOrDefault(g => g.Id == id);
 
+        public IReadOnlyList<Grade> GetByStudentId(int studentId)
+            => Load().Where(g => g.StudentId == studentId).ToList();
+
+        public IReadOnlyList<Grade> GetBySubjectId(int subjectId)
+            => Load().Where(g => g.SubjectId == subjectId).ToList();
+
         public void Add(Grade grade)
         {
             var grades = Load();

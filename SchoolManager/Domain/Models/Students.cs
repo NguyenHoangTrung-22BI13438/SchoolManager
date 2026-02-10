@@ -10,7 +10,7 @@ namespace SchoolManager.Domain.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
-        public int ClassId { get; set; }
+        public int ClassroomId { get; set; }
         public StudentStatus Status { get; set; }
     }
 }

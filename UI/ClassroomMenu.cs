@@ -1,11 +1,6 @@
-﻿using SchoolManager.Application.Services;
+using SchoolManager.Application.Services;
 using SchoolManager.Domain.Models;
 using SchoolManager.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManager.UI
 {
@@ -59,6 +54,7 @@ namespace SchoolManager.UI
                 }
             }
         }
+
         static void ListClassrooms(IClassroomRepository repo, IStudentRepository studentRepo)
         {
             Console.Clear();
@@ -122,10 +118,10 @@ namespace SchoolManager.UI
             Console.Write("ID: ");
             var id = int.Parse(Console.ReadLine()!);
 
-            Console.Write("Name: ");
+            Console.Write("Name (e.g., '10A', '11-Science'): ");
             var name = Console.ReadLine()!;
 
-            repo.Add(new Classrooms
+            repo.Add(new Classroom
             {
                 Id = id,
                 Name = name
@@ -153,9 +149,9 @@ namespace SchoolManager.UI
 
             Console.WriteLine($"Current Name: {classroom.Name}");
             Console.Write("New Name (leave empty to keep current): ");
-            var name = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(name))
-                classroom.Name = name;
+            var nameInput = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(nameInput))
+                classroom.Name = nameInput;
 
             repo.Update(classroom);
             Console.WriteLine("Classroom updated successfully.");
@@ -198,6 +194,5 @@ namespace SchoolManager.UI
             Console.WriteLine("\nPress any key...");
             Console.ReadKey();
         }
-
     }
 }

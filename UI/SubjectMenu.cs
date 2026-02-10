@@ -1,4 +1,4 @@
-﻿using SchoolManager.Application.Services;
+using SchoolManager.Application.Services;
 using SchoolManager.Domain.Models;
 using SchoolManager.Application.Interfaces;
 
@@ -109,7 +109,7 @@ namespace SchoolManager.UI
             Console.Write("Name: ");
             var name = Console.ReadLine()!;
 
-            repo.Add(new Subjects
+            repo.Add(new Subject
             {
                 Id = id,
                 Name = name

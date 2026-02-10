@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SchoolManager.Domain.Models;
 using SchoolManager.Application.Services;
-using SchoolManager.Infrastructure.Json;
+using SchoolManager.Application.Interfaces;
 
 namespace SchoolManager.UI
 {
@@ -15,7 +15,7 @@ namespace SchoolManager.UI
         {
             Show(app.Teachers, app.TeacherRepo);
         }
-        public static void Show(TeacherService service, JsonTeacherRepository repo)
+        public static void Show(TeacherService service, ITeacherRepository repo)
         {
             while (true)
             {
@@ -62,7 +62,7 @@ namespace SchoolManager.UI
                 }
             }
         }
-        static void ListTeachers(JsonTeacherRepository repo)
+        static void ListTeachers(ITeacherRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== TEACHER LIST ===");
@@ -83,7 +83,7 @@ namespace SchoolManager.UI
             Pause();
         }
 
-        static void ViewTeacherById(JsonTeacherRepository repo)
+        static void ViewTeacherById(ITeacherRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== VIEW TEACHER ===");
@@ -105,7 +105,7 @@ namespace SchoolManager.UI
             Pause();
         }
 
-        static void AddTeacher(JsonTeacherRepository repo)
+        static void AddTeacher(ITeacherRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== ADD TEACHER ===");
@@ -126,7 +126,7 @@ namespace SchoolManager.UI
             Pause();
         }
 
-        static void UpdateTeacher(JsonTeacherRepository repo)
+        static void UpdateTeacher(ITeacherRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== UPDATE TEACHER ===");
@@ -153,7 +153,7 @@ namespace SchoolManager.UI
             Pause();
         }
 
-        static void DeleteTeacher(JsonTeacherRepository repo)
+        static void DeleteTeacher(ITeacherRepository repo)
         {
             Console.Clear();
             Console.WriteLine("=== DELETE TEACHER ===");
@@ -201,7 +201,7 @@ namespace SchoolManager.UI
             {
                 foreach (var s in subjects)
                 {
-                    Console.WriteLine($"ID: {s.Id} | Name: {s.Name}");
+                    Console.WriteLine(s.ToString());
                 }
             }
 

@@ -8,9 +8,16 @@
 </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Infrastructure\Json\Data\classroomsubjects.json" />
     <None Remove="Infrastructure\Json\grades.json" />
     <None Remove="Infrastructure\Json\student.json" />
     <None Remove="Infrastructure\Json\teachers.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Infrastructure\Json\Data\classroomsubjects.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

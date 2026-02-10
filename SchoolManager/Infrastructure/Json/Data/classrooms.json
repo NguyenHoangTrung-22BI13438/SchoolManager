@@ -1,10 +1,22 @@
 ﻿[
   {
     "id": 1,
-    "gradeId": 1
+    "name": "10A"
   },
   {
     "id": 2,
-    "gradeId":  2
+    "name": "10B"
+  },
+  {
+    "id": 3,
+    "name": "11-Science"
+  },
+  {
+    "id": 4,
+    "name": "11-Arts"
+  },
+  {
+    "id": 5,
+    "name": "12-Advanced"
   }
 ]

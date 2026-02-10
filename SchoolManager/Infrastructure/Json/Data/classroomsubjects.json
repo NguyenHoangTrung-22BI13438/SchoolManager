@@ -1,0 +1,92 @@
+﻿[
+  {
+    "id": 1,
+    "classroomId": 1,
+    "subjectId": 1,
+    "teacherId": 1
+  },
+  {
+    "id": 2,
+    "classroomId": 1,
+    "subjectId": 2,
+    "teacherId": 2
+  },
+  {
+    "id": 3,
+    "classroomId": 1,
+    "subjectId": 3,
+    "teacherId": 3
+  },
+  {
+    "id": 4,
+    "classroomId": 2,
+    "subjectId": 1,
+    "teacherId": 1
+  },
+  {
+    "id": 5,
+    "classroomId": 2,
+    "subjectId": 4,
+    "teacherId": 4
+  },
+  {
+    "id": 6,
+    "classroomId": 2,
+    "subjectId": 5,
+    "teacherId": 5
+  },
+  {
+    "id": 7,
+    "classroomId": 3,
+    "subjectId": 2,
+    "teacherId": 2
+  },
+  {
+    "id": 8,
+    "classroomId": 3,
+    "subjectId": 3,
+    "teacherId": 3
+  },
+  {
+    "id": 9,
+    "classroomId": 3,
+    "subjectId": 6,
+    "teacherId": 6
+  },
+  {
+    "id": 10,
+    "classroomId": 4,
+    "subjectId": 1,
+    "teacherId": 1
+  },
+  {
+    "id": 11,
+    "classroomId": 4,
+    "subjectId": 4,
+    "teacherId": 4
+  },
+  {
+    "id": 12,
+    "classroomId": 4,
+    "subjectId": 7,
+    "teacherId": 7
+  },
+  {
+    "id": 13,
+    "classroomId": 5,
+    "subjectId": 2,
+    "teacherId": 2
+  },
+  {
+    "id": 14,
+    "classroomId": 5,
+    "subjectId": 5,
+    "teacherId": 5
+  },
+  {
+    "id": 15,
+    "classroomId": 5,
+    "subjectId": 8,
+    "teacherId": 8
+  }
+]
